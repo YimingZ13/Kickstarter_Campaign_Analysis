@@ -336,22 +336,18 @@ FROM cat_subcat;
 # Get success and fail rate for each category and subcategory
 SELECT 
 	cs.category,
-    SUM(CASE WHEN
-				c.outcome = 'successful' THEN 1 
-                ELSE k
-                END) AS total_success,
-	SUM(CASE WHEN
-				c.outcome = 'failed' THEN 1 
-                ELSE 0
-                END) AS total_fail,
-	ROUND(SUM(CASE WHEN
-				c.outcome = 'successful' THEN 1 
-                ELSE 0
-                END)/COUNT(c.outcome) * 100,2) AS success_rate,
-	ROUND(SUM(CASE WHEN
-				c.outcome = 'failed' THEN 1 
-                ELSE 0
-                END)/COUNT(c.outcome) * 100,2) AS fail_rate
+    SUM(CASE WHEN c.outcome = 'successful' THEN 1 
+		ELSE 0
+		END) AS total_success,
+	SUM(CASE WHEN c.outcome = 'failed' THEN 1 
+		ELSE 0
+		END) AS total_fail,
+	ROUND(SUM(CASE WHEN c.outcome = 'successful' THEN 1 
+		ELSE 0
+		END)/COUNT(c.outcome) * 100,2) AS success_rate,
+	ROUND(SUM(CASE WHEN	c.outcome = 'failed' THEN 1 
+		ELSE 0
+		END)/COUNT(c.outcome) * 100,2) AS fail_rate
 FROM campaign c
 JOIN cat_subcat cs
 ON c.sub_category_id = cs.id
@@ -360,22 +356,18 @@ GROUP BY cs.category;
 # Do the same for subcategories
 SELECT 
 	cs.subcategory,
-    SUM(CASE WHEN
-				c.outcome = 'successful' THEN 1 
-                ELSE 0
-                END) AS total_success,
-	SUM(CASE WHEN
-				c.outcome = 'failed' THEN 1 
-                ELSE 0
-                END) AS total_fail,
-	ROUND(SUM(CASE WHEN
-				c.outcome = 'successful' THEN 1 
-                ELSE 0
-                END)/COUNT(c.outcome) * 100,2) AS success_rate,
-	ROUND(SUM(CASE WHEN
-				c.outcome = 'failed' THEN 1 
-                ELSE 0
-                END)/COUNT(c.outcome) * 100,2) AS fail_rate
+    SUM(CASE WHEN c.outcome = 'successful' THEN 1 
+		ELSE 0
+        END) AS total_success,
+	SUM(CASE WHEN c.outcome = 'failed' THEN 1 
+		ELSE 0
+		END) AS total_fail,
+	ROUND(SUM(CASE WHEN c.outcome = 'successful' THEN 1 
+		ELSE 0
+		END)/COUNT(c.outcome) * 100,2) AS success_rate,
+	ROUND(SUM(CASE WHEN c.outcome = 'failed' THEN 1 
+		ELSE 0
+		END)/COUNT(c.outcome) * 100,2) AS fail_rate
 FROM campaign c
 JOIN cat_subcat cs
 ON c.sub_category_id = cs.id
@@ -385,22 +377,18 @@ GROUP BY cs.subcategory;
 # Set threshold of 10 total campaigns
 SELECT 
 	cs.subcategory,
-    SUM(CASE WHEN
-				c.outcome = 'successful' THEN 1 
-                ELSE 0
-                END) AS total_success,
-	SUM(CASE WHEN
-				c.outcome = 'failed' THEN 1 
-                ELSE 0
-                END) AS total_fail,
-	ROUND(SUM(CASE WHEN
-				c.outcome = 'successful' THEN 1 
-                ELSE 0
-                END)/COUNT(c.outcome) * 100,2) AS success_rate,
-	ROUND(SUM(CASE WHEN
-				c.outcome = 'failed' THEN 1 
-                ELSE 0
-                END)/COUNT(c.outcome) * 100,2) AS fail_rate
+    SUM(CASE WHEN c.outcome = 'successful' THEN 1 
+		ELSE 0
+		END) AS total_success,
+	SUM(CASE WHEN c.outcome = 'failed' THEN 1 
+		ELSE 0
+		END) AS total_fail,
+	ROUND(SUM(CASE WHEN c.outcome = 'successful' THEN 1 
+		ELSE 0
+		END)/COUNT(c.outcome) * 100,2) AS success_rate,
+	ROUND(SUM(CASE WHEN c.outcome = 'failed' THEN 1 
+		ELSE 0
+		END)/COUNT(c.outcome) * 100,2) AS fail_rate
 FROM campaign c
 JOIN cat_subcat cs
 ON c.sub_category_id = cs.id
@@ -657,7 +645,6 @@ GROUP BY
     cs.category
 ORDER BY country, success_rate DESC;
 
-
-select *
-from campaign
-where goal<=pledged AND outcome='failed';
+# US as the big player has a significant concentraton of campaigns, which not only leads in volume but also boasts a relatively high success rate. This suggests a robust market for crowdfunding campaigns
+# Categories like Dance, Comics, Theater not only perform well above average in terms of success rate, but also indicate a strong niche or community support in these areas
+# While certain categories dominate in terms of the number of campaigns, it does not necessarily correlate with  higher success rate (e.g. Film & Video, Music). Niche categories with fewer campaigns can achieve higher average success rates, potentially due to more targeted appeal and community support

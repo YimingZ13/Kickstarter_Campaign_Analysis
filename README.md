@@ -8,7 +8,6 @@
 
 <a name="Introduction"></a>
 ## Introduction
-# Kickstarter Campaign Analysis
 Welcome to my Kickstarter Campaign Analysis repository. This project delves into the vibrant world of crowdfunding, where creativity meets financial backing, using the robust querying capabilities of SQL. Kickstarter, a leader in the crowdfunding domain, has seen an expansive array of projects, varying in success and scope across numerous categories and regions. Our objective is to dissect this wealth of data to uncover insights that could guide creators and backers towards more informed decisions.
 
 Through the use of SQL, I systematically analyze campaign trends, success rates, and category performances to glean patterns and narratives that lie within the numbers. The queries range from basic data retrieval to complex joins, aggregations, and window functions, aiming to unravel the factors that contribute to a campaign's success or failure. Finally, I  utlized DAX to transform the dataset and create a dashboard in Power BI, to present the findings in an interactive and intuitive manner, allowing users to filter, sort, and explore the data in ways thta cater to their specific interests or investigative needs.
